@@ -42,24 +42,21 @@ public class ZoneScript : MonoBehaviour {
 
 	void OnTriggerEnter(Collider p_other)
 	{
-		if(p_other.tag == "Player" && !m_playerScript.JustWarped())
+		if(p_other.tag == "Player")
 		{
 			Terrain terra = Terrain.activeTerrain;
 			Vector3 terraSize = terra.terrainData.size;
 			if(m_linearMove)
-				p_other.transform.Translate(terraSize.x - gameObject.renderer.bounds.size.x, 0, 0, gameObject.transform); //Space.World so that we do not use the camera direction
+				p_other.transform.Translate(terraSize.x - 1, 0, 0, gameObject.transform); //Space.World so that we do not use the camera direction
 			else if(m_pointMove)
 			{
 				p_other.transform.localPosition = m_points[0].transform.localPosition;
 			}
 
-			m_playerScript.SetPlayerWarp(true);
 		}
 	}
 
 	void OnTriggerExit(Collider p_other)
 	{
-		if (p_other.tag == "Player")
-			m_playerScript.SetPlayerWarp(false);
 	}
 }
