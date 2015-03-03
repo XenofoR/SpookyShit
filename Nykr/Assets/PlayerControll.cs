@@ -38,18 +38,16 @@ public class PlayerControll : MonoBehaviour
 	{
 		m_movement.x = 0;
 		m_movement.y = 0;
-		Event e = Event.current;
-		if (e != null && (e.isKey && e.GetType().Equals(EventType.keyDown))) 
-		{
-			if(e.keyCode == m_keys["forward"])
-				m_movement.x = 1;
-			if(e.keyCode == m_keys["backward"])
-				m_movement.x = -1;
-			if(e.keyCode == m_keys["strafe_left"])
-				m_movement.y = 1;
-			if(e.keyCode == m_keys["strafe_right"])
-				m_movement.y = -1;
-		}
+
+		if(Input.GetKeyDown(m_keys["forward"]))
+			m_movement.x = 1;
+		if(Input.GetKeyDown(m_keys["backward"]))
+			m_movement.x = -1;
+		if(Input.GetKeyDown(m_keys["strafe_left"]))
+			m_movement.y = 1;
+		if(Input.GetKeyDown(m_keys["strafe_right"]))
+			m_movement.y = -1;
+
 		GetComponent<Rigidbody>().AddForce (new Vector3 (m_movement.x * m_normalSpeed, 0, m_movement.y * m_normalSpeed));
 	}
 }
